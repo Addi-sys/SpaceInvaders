@@ -1,0 +1,38 @@
+PSEUDO
+
+notes for my space invaders game
+
+steps
+
+1) Create background - check
+2) Spaceship:
+	. Create spaceship sprites??
+	. Position spaceship
+	. Movement parameters
+3) Aliens:
+	. Create variety of spaceships (5 varying) sprites??
+	. Mothership
+	. Movement + positioning (Arrays)
+4) Laser:
+	. Movement (how?? Array??)
+	. Action timing or press spacebar?
+	. Alien hit animation
+	. Spaceship hit animation
+5) Score:
+	. Placement (Top left)
+	. Add score change to action
+	. Update new score
+	
+** Add red line (bottom)
+
+6) Lives:
+	. Placement (Bottom left)
+	. Update no. of lives after death
+7) Hiscore:
+	. Placement  (Top right)
+	. Save scores even after refresh(type to txt, read and 	   print)
+	. Update top 10 scores
+8) Credit:
+	. for aesthetic (bottom right)
+	
+	
