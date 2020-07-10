@@ -6,7 +6,7 @@ steps
 
 1) Create background - check
 2) Spaceship:
-	. Create spaceship sprites??
+	. Create spaceship sprite?? (start rect, try get ori sprite later)
 	. Position spaceship
 	. Movement parameters
 3) Aliens:
@@ -34,5 +34,8 @@ steps
 	. Update top 10 scores
 8) Credit:
 	. for aesthetic (bottom right)
+	
+9) Extra Death screen:
+	. just for fun show dark souls dead gif with nooooo darth vader
 	
 	
