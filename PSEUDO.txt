@@ -6,36 +6,38 @@ steps
 
 1) Create background - check
 2) Spaceship:
-	. Create spaceship sprite?? (start rect, try get ori sprite later)
-	. Position spaceship
-	. Movement parameters
+	. Create spaceship sprite - check
+	. Position spaceship - check
+	. Movement parameters - check
 3) Aliens:
-	. Create variety of spaceships (5 varying) sprites??
-	. Mothership
-	. Movement + positioning (Arrays)
+	. Create variety of spaceships (5 varying) - check
+	. Mothership - check
+	. Movement + positioning (Arrays) - check
 4) Laser:
-	. Movement (how?? Array??)
-	. Action timing or press spacebar?
-	. Alien hit animation
-	. Spaceship hit animation
+	. Movement (how??) - check
+	. Action timing (aliens) or press spacebar (player, 3 sec) -check
+	. Alien hit animation - check
+	. Spaceship hit animation - check
+	. Add explosion image 3 sec
 5) Score:
-	. Placement (Top left)
-	. Add score change to action
-	. Update new score
+	. Placement (Top left) check
+	. Add score change to action - NEED FIX
+	. Update new score - NEED FIX
 	
-** Add red line (bottom)
+** Add red line (bottom) - check
 
 6) Lives:
-	. Placement (Bottom left)
-	. Update no. of lives after death
+	. Placement (Bottom left) - check
+	. Update no. of lives after death - check
 7) Hiscore:
 	. Placement  (Top right)
 	. Save scores even after refresh(type to txt, read and 	   print)
 	. Update top 10 scores
-8) Credit:
+8) Credit: (replaced with LIVES)
 	. for aesthetic (bottom right)
 	
 9) Extra Death screen:
 	. just for fun show dark souls dead gif with nooooo darth vader
 	
+10) Hardcode each alien in and edit hit boxes
 	

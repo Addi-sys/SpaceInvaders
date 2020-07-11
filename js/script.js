@@ -15,12 +15,10 @@ let game = {
     difficulty: 1,
     listeningToKeyboard: true,
     level: 1,
-
 };
 
-
 // define lives variable
-let lives = 3;
+let lives = 2;
 
 let canvas;
 let ctx;
@@ -38,7 +36,10 @@ let bgReady, heroReady, alienOneReady,
     alienFiveReady,
     mothershipReady,
     laserPlayerReady,
-    laserAlienReady;
+    laserAlienReady,
+    redLineReady,
+    playerLifeOneReady,
+    playerLifeTwoReady;
 
 let bgImage, heroImage, alienOne,
     alienTwo,
@@ -47,11 +48,16 @@ let bgImage, heroImage, alienOne,
     alienFive,
     mothership,
     laserPlayer,
-    laserAlien;
+    laserAlien,
+    redLine,
+    playerLifeOne,
+    playerLifeTwo;
 
 let startTime = Date.now();
 const SECONDS_PER_ROUND = 0;
 let elapsedTime = 0;
+
+let score = 0;
 
 function loadImages() {
     bgImage = new Image();
@@ -60,6 +66,28 @@ function loadImages() {
         bgReady = true;
     };
     bgImage.src = "images/blackBgImage.jpeg";
+
+    redLine = new Image();
+    redLine.onload = function() {
+        // show the background image
+        redLineReady = true;
+    };
+    redLine.src = "images/redline.png";
+
+    playerLifeOne = new Image();
+    playerLifeOne.onload = function() {
+        // show the hero image
+        playerLifeOneReady = true;
+    };
+    playerLifeOne.src = "images/player.png";
+
+    playerLifeTwo = new Image();
+    playerLifeTwo.onload = function() {
+        // show the hero image
+        playerLifeTwoReady = true;
+    };
+    playerLifeTwo.src = "images/player.png";
+
     heroImage = new Image();
     heroImage.onload = function() {
         // show the hero image
@@ -134,8 +162,14 @@ function loadImages() {
  * The same applies to the monster.
  */
 
-let heroX = canvas.width / 2
-let heroY = 360
+let heroX = canvas.width / 2 - 20;
+let heroY = 360;
+
+let playerLifeOneX = 20;
+let playerLifeOneY = 400;
+
+let playerLifeTwoX = 70;
+let playerLifeTwoY = 400;
 
 let alienOneX = 40;
 let alienOneY = 100;
@@ -163,6 +197,9 @@ let laserAlienDirectionY = 1;
 let laserPlayerX = canvas.width / 2;
 let laserPlayerY = 360;
 let laserPlayerDirectionY = -1;
+
+let redLineX = 0;
+let redLineY = 380;
 
 /** 
  * Keyboard Listeners
@@ -213,22 +250,108 @@ let update = function() {
         heroX += 5;
     }
 
-    // Check if player and monster collided. Our images
-    // are about 32 pixels big.
+    // adds collision of players laser with aliens
     if (
-        heroX <= (alienOneX + 32) &&
-        alienOneX <= (heroX + 32) &&
-        heroY <= (alienOneY + 32) &&
-        alienOneY <= (heroY + 32)
+        laserPlayerX <= (alienOneX + 32) &&
+        alienOneX <= (laserPlayerX + 32) &&
+        laserPlayerY <= (alienOneY + 32) &&
+        alienOneY <= (laserPlayerY + 32)
     ) {
-        // Pick a new location for the monster.
-        // Note: Change this to place the monster at a new, random location.
-        alienOneX = alienOneX + 50;
-        alienOneY = alienOneY + 70;
+        alienOneX = alienOneX + 800;
+        alienOneY = alienOneY + 700;
+        laserPlayerY = heroY;
+        laserPlayerX = heroX;
+        score = score + 200;
     }
 
-    if (heroX >= canvas.width - 32) {
-        heroX = canvas.width - 32
+    if (
+        laserPlayerX <= (alienTwoX + 32) &&
+        alienTwoX <= (laserPlayerX + 32) &&
+        laserPlayerY <= (alienTwoY + 32) &&
+        alienTwoY <= (laserPlayerY + 32)
+    ) {
+        alienTwoX = alienTwoX + 800;
+        alienTwoY = alienTwoY + 700;
+        laserPlayerY = heroY;
+        laserPlayerX = heroX;
+        score = score = 150;
+    }
+
+    if (
+        laserPlayerX <= (alienThreeX + 32) &&
+        alienThreeX <= (laserPlayerX + 32) &&
+        laserPlayerY <= (alienThreeY + 32) &&
+        alienThreeY <= (laserPlayerY + 32)
+    ) {
+        alienThreeX = alienThreeX + 800;
+        alienThreeY = alienThreeY + 700;
+        laserPlayerY = heroY;
+        laserPlayerX = heroX;
+        score = score = 100;
+    }
+
+    if (
+        laserPlayerX <= (alienFourX + 32) &&
+        alienFourX <= (laserPlayerX + 32) &&
+        laserPlayerY <= (alienFourY + 32) &&
+        alienFourY <= (laserPlayerY + 32)
+    ) {
+        alienFourX = alienFourX + 800;
+        alienFourY = alienFourY + 700;
+        laserPlayerY = heroY;
+        laserPlayerX = heroX;
+        score = score = 75;
+    }
+
+    if (
+        laserPlayerX <= (alienFiveX + 32) &&
+        alienFiveX <= (laserPlayerX + 32) &&
+        laserPlayerY <= (alienFiveY + 32) &&
+        alienFiveY <= (laserPlayerY + 32)
+    ) {
+        alienFiveX = alienFiveX + 800;
+        alienFiveY = alienFiveY + 700;
+        laserPlayerY = heroY;
+        laserPlayerX = heroX;
+        score = score + 50;
+    }
+
+    if (
+        laserPlayerX <= (mothershipX + 32) &&
+        mothershipX <= (laserPlayerX + 32) &&
+        laserPlayerY <= (mothershipY + 32) &&
+        mothershipY <= (laserPlayerY + 32)
+    ) {
+        mothershipX = mothershipX + 800;
+        mothershipY = mothershipY + 700;
+        laserPlayerY = heroY;
+        laserPlayerX = heroX;
+        score = score + 500;
+    }
+
+    // adds collision of mothership laser with player spaceship
+    if (
+        laserAlienX <= (heroX + 32) &&
+        heroX <= (laserAlienX + 32) &&
+        laserAlienY <= (heroY + 32) &&
+        heroY <= (laserAlienY + 32)
+    ) {
+        heroX = canvas.width / 2;
+        heroY = 360;
+        laserAlienY = mothershipY;
+        laserAlienX = mothershipX;
+        lives = lives - 1;
+        playerLifeTwoX = 800;
+        playerLifeTwoY = 800;
+
+        if (lives == 0) {
+            playerLifeOneX = 800;
+            playerLifeOneY = 800;
+        }
+    }
+
+    if (heroX >= canvas.width - 40) {
+        heroX = canvas.width - 40
     }
     if (heroX < 0) {
         heroX = 0
@@ -280,6 +403,12 @@ var render = function() {
     }
     if (heroReady) {
         ctx.drawImage(heroImage, heroX, heroY);
+    }
+    if (playerLifeOneReady) {
+        ctx.drawImage(playerLifeOne, playerLifeOneX, playerLifeOneY);
+    }
+    if (playerLifeTwoReady) {
+        ctx.drawImage(playerLifeTwo, playerLifeTwoX, playerLifeTwoY);
     }
     if (alienOneReady) {
         let positionChange = 0;
@@ -333,8 +462,15 @@ var render = function() {
     if (laserPlayerReady) {
         ctx.drawImage(laserPlayer, laserPlayerX, laserPlayerY);
     }
+
+    if (redLineReady) {
+        ctx.drawImage(redLine, redLineX, redLineY);
+    }
+
     ctx.fillStyle = "#ffffff";
     ctx.fillText(`${SECONDS_PER_ROUND + elapsedTime}`, 20, 20);
+    ctx.fillText(`SCORE: ${score}`, canvas.width / 2 - 20, 20);
+    ctx.fillText(`CREDITS: ${lives}`, 340, 420)
 
 };
 
