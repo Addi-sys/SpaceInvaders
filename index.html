@@ -6,17 +6,17 @@
     <title>Space Invaders!</title>
 
     <link href='https://fonts.googleapis.com/css?family=Bungee Shade' rel='stylesheet'>
-    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
 
 </head>
 
 <body style="font-family: 'Bungee Shade'">
     <div class="background">
-        <div class="container-fluid">
+        <div class="container-fluid display-flex justify-content-center">
             <div class="column">
                 <div class="col-lg-4 col-12">
-                    <h1 class="text-center text-white py-3">SPACE INVADERS</h1>
+                    <h1 class="header text-center text-white py-3">SPACE INVADERS</h1>
                     <div>
                         <div class="py-2 text-center text-white" style="font-size: 20px;">HISCORE:</div>
                         <div id="hiscore-number" class="text-center text-white py-3"></div>
@@ -32,9 +32,9 @@
                         <button onclick="startGame()" class="btn px-3 text-white btn-black">
                           START!
                         </button>
-                        <!-- <canvas id="canvas" style="display: none;"></canvas> -->
                     </div>
                 </div>
+                <canvas id="canvas" style="display: none;"></canvas>
             </div>
         </div>
     </div>
