@@ -14,7 +14,6 @@ let game = {
     startspeed: 1,
     difficulty: 1,
     listeningToKeyboard: true,
-    // level: 1,
 };
 
 // define lives variable
@@ -25,6 +24,10 @@ let canvas;
 let ctx;
 
 let alienOneLine = [];
+let alienTwoLine = [];
+let alienThreeLine = [];
+let alienFourLine = [];
+let alienFiveLine = [];
 
 let gameState = false;
 
@@ -251,6 +254,7 @@ let update = function() {
 
     // adds collision of players laser with aliens
     if (gameState === true) {
+
         if (
             laserPlayerX <= (alienOneX + 32) &&
             alienOneX <= (laserPlayerX + 32) &&
@@ -267,113 +271,115 @@ let update = function() {
                 hiScore = score;
             }
         }
+    }
 
-        if (
-            laserPlayerX <= (alienTwoX + 32) &&
-            alienTwoX <= (laserPlayerX + 32) &&
-            laserPlayerY <= (alienTwoY + 32) &&
-            alienTwoY <= (laserPlayerY + 32)
-        ) {
-            alienTwoX = alienTwoX + 800;
-            alienTwoY = alienTwoY + 700;
-            laserPlayerY = heroY;
-            laserPlayerX = heroX;
-            score += 150;
 
-            if (score > hiScore) {
-                hiScore = score;
-            }
-        }
+    if (
+        laserPlayerX <= (alienTwoX + 32) &&
+        alienTwoX <= (laserPlayerX + 32) &&
+        laserPlayerY <= (alienTwoY + 32) &&
+        alienTwoY <= (laserPlayerY + 32)
+    ) {
+        alienTwoX = alienTwoX + 800;
+        alienTwoY = alienTwoY + 700;
+        laserPlayerY = heroY;
+        laserPlayerX = heroX;
+        score += 150;
 
-        if (
-            laserPlayerX <= (alienThreeX + 32) &&
-            alienThreeX <= (laserPlayerX + 32) &&
-            laserPlayerY <= (alienThreeY + 32) &&
-            alienThreeY <= (laserPlayerY + 32)
-        ) {
-            alienThreeX = alienThreeX + 800;
-            alienThreeY = alienThreeY + 700;
-            laserPlayerY = heroY;
-            laserPlayerX = heroX;
-            score += 100;
-
-            if (score > hiScore) {
-                hiScore = score;
-            }
-        }
-
-        if (
-            laserPlayerX <= (alienFourX + 32) &&
-            alienFourX <= (laserPlayerX + 32) &&
-            laserPlayerY <= (alienFourY + 32) &&
-            alienFourY <= (laserPlayerY + 32)
-        ) {
-            alienFourX = alienFourX + 800;
-            alienFourY = alienFourY + 700;
-            laserPlayerY = heroY;
-            laserPlayerX = heroX;
-            score += 75;
-
-            if (score > hiScore) {
-                hiScore = score;
-            }
-        }
-
-        if (
-            laserPlayerX <= (alienFiveX + 32) &&
-            alienFiveX <= (laserPlayerX + 32) &&
-            laserPlayerY <= (alienFiveY + 32) &&
-            alienFiveY <= (laserPlayerY + 32)
-        ) {
-            alienFiveX = alienFiveX + 800;
-            alienFiveY = alienFiveY + 700;
-            laserPlayerY = heroY;
-            laserPlayerX = heroX;
-            score += 50;
-
-            if (score > hiScore) {
-                hiScore = score;
-            }
-        }
-
-        if (
-            laserPlayerX <= (mothershipX + 32) &&
-            mothershipX <= (laserPlayerX + 32) &&
-            laserPlayerY <= (mothershipY + 32) &&
-            mothershipY <= (laserPlayerY + 32)
-        ) {
-            mothershipX = mothershipX + 800;
-            mothershipY = mothershipY + 700;
-            laserPlayerY = heroY;
-            laserPlayerX = heroX;
-            score += 500;
-
-            if (score > hiScore) {
-                hiScore = score;
-            }
-        }
-
-        // adds collision of mothership laser with player spaceship
-        if (
-            laserAlienX <= (heroX + 32) &&
-            heroX <= (laserAlienX + 32) &&
-            laserAlienY <= (heroY + 32) &&
-            heroY <= (laserAlienY + 32)
-        ) {
-            heroX = canvas.width / 2;
-            heroY = 360;
-            laserAlienY = mothershipY;
-            laserAlienX = mothershipX;
-            lives = lives - 1;
-            playerLifeTwoX = 800;
-            playerLifeTwoY = 800;
-
-            if (lives == 0) {
-                playerLifeOneX = 800;
-                playerLifeOneY = 800;
-            }
+        if (score > hiScore) {
+            hiScore = score;
         }
     }
+
+    if (
+        laserPlayerX <= (alienThreeX + 32) &&
+        alienThreeX <= (laserPlayerX + 32) &&
+        laserPlayerY <= (alienThreeY + 32) &&
+        alienThreeY <= (laserPlayerY + 32)
+    ) {
+        alienThreeX = alienThreeX + 800;
+        alienThreeY = alienThreeY + 700;
+        laserPlayerY = heroY;
+        laserPlayerX = heroX;
+        score += 100;
+
+        if (score > hiScore) {
+            hiScore = score;
+        }
+    }
+
+    if (
+        laserPlayerX <= (alienFourX + 32) &&
+        alienFourX <= (laserPlayerX + 32) &&
+        laserPlayerY <= (alienFourY + 32) &&
+        alienFourY <= (laserPlayerY + 32)
+    ) {
+        alienFourX = alienFourX + 800;
+        alienFourY = alienFourY + 700;
+        laserPlayerY = heroY;
+        laserPlayerX = heroX;
+        score += 75;
+
+        if (score > hiScore) {
+            hiScore = score;
+        }
+    }
+
+    if (
+        laserPlayerX <= (alienFiveX + 32) &&
+        alienFiveX <= (laserPlayerX + 32) &&
+        laserPlayerY <= (alienFiveY + 32) &&
+        alienFiveY <= (laserPlayerY + 32)
+    ) {
+        alienFiveX = alienFiveX + 800;
+        alienFiveY = alienFiveY + 700;
+        laserPlayerY = heroY;
+        laserPlayerX = heroX;
+        score += 50;
+
+        if (score > hiScore) {
+            hiScore = score;
+        }
+    }
+
+    if (
+        laserPlayerX <= (mothershipX + 32) &&
+        mothershipX <= (laserPlayerX + 32) &&
+        laserPlayerY <= (mothershipY + 32) &&
+        mothershipY <= (laserPlayerY + 32)
+    ) {
+        mothershipX = mothershipX + 800;
+        mothershipY = mothershipY + 700;
+        laserPlayerY = heroY;
+        laserPlayerX = heroX;
+        score += 500;
+
+        if (score > hiScore) {
+            hiScore = score;
+        }
+    }
+
+    // adds collision of mothership laser with player spaceship
+    if (
+        laserAlienX <= (heroX + 32) &&
+        heroX <= (laserAlienX + 32) &&
+        laserAlienY <= (heroY + 32) &&
+        heroY <= (laserAlienY + 32)
+    ) {
+        heroX = canvas.width / 2;
+        heroY = 360;
+        laserAlienY = mothershipY;
+        laserAlienX = mothershipX;
+        lives = lives - 1;
+        playerLifeTwoX = 800;
+        playerLifeTwoY = 800;
+
+        if (lives == 0) {
+            playerLifeOneX = 800;
+            playerLifeOneY = 800;
+        }
+    }
+
 
     if (heroX >= canvas.width - 40) {
         heroX = canvas.width - 40
@@ -414,8 +420,6 @@ let update = function() {
         mothershipX = 0
         mothershipDirectionX = 1;
     }
-
-
 };
 
 function restartGame() {
@@ -490,7 +494,7 @@ var render = function() {
         let positionChange = 0;
 
         for (i = 0; i <= canvas.width / 55; i++) {
-            ctx.drawImage(alienOne, alienOneX + positionChange, alienOneY);
+            alienOneLine[i] = ctx.drawImage(alienOne, alienOneX + positionChange, alienOneY);
             positionChange += 40
         }
 
@@ -499,7 +503,7 @@ var render = function() {
         let positionChange = 0;
 
         for (i = 0; i < canvas.width / 50; i++) {
-            ctx.drawImage(alienTwo, alienTwoX + positionChange, alienTwoY);
+            alienTwoLine[i] = ctx.drawImage(alienTwo, alienTwoX + positionChange, alienTwoY);
             positionChange += 40;
         }
     }
@@ -507,7 +511,7 @@ var render = function() {
         let positionChange = 0;
 
         for (i = 0; i < canvas.width / 50; i++) {
-            ctx.drawImage(alienThree, alienThreeX + positionChange, alienThreeY);
+            alienThreeLine[i] = ctx.drawImage(alienThree, alienThreeX + positionChange, alienThreeY);
             positionChange += 40;
         }
     }
@@ -515,7 +519,7 @@ var render = function() {
         let positionChange = 0
 
         for (i = 0; i < canvas.width / 50; i++) {
-            ctx.drawImage(alienFour, alienFourX + positionChange, alienFourY);
+            alienFourLine[i] = ctx.drawImage(alienFour, alienFourX + positionChange, alienFourY);
             positionChange += 40
         }
     }
@@ -523,8 +527,9 @@ var render = function() {
         let positionChange = 0
 
         for (i = 0; i < canvas.width / 50; i++) {
-            ctx.drawImage(alienFive, alienFiveX + positionChange, alienFiveY);
+            alienFiveLine[i] = ctx.drawImage(alienFive, alienFiveX + positionChange, alienFiveY);
             positionChange += 40;
+
         }
     }
     if (mothershipReady) {
