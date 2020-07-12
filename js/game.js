@@ -19,9 +19,12 @@ let game = {
 
 // define lives variable
 let lives = 2;
+let hiScore = 1000;
 
 let canvas;
 let ctx;
+
+let alienOneLine = [];
 
 canvas = document.createElement("canvas");
 ctx = canvas.getContext("2d");
@@ -250,6 +253,12 @@ let update = function() {
         heroX += 5;
     }
 
+    // if (32 in keysDown) {
+    //     for (i = 0; i < canvas.width; i++) {
+    //         laserPlayerY += 5;
+    //     }
+    // }
+
     // adds collision of players laser with aliens
     if (
         laserPlayerX <= (alienOneX + 32) &&
@@ -261,7 +270,7 @@ let update = function() {
         alienOneY = alienOneY + 700;
         laserPlayerY = heroY;
         laserPlayerX = heroX;
-        score = score + 200;
+        score += 200;
     }
 
     if (
@@ -274,7 +283,7 @@ let update = function() {
         alienTwoY = alienTwoY + 700;
         laserPlayerY = heroY;
         laserPlayerX = heroX;
-        score = score = 150;
+        score += 150;
     }
 
     if (
@@ -287,7 +296,7 @@ let update = function() {
         alienThreeY = alienThreeY + 700;
         laserPlayerY = heroY;
         laserPlayerX = heroX;
-        score = score = 100;
+        score += 100;
     }
 
     if (
@@ -300,7 +309,7 @@ let update = function() {
         alienFourY = alienFourY + 700;
         laserPlayerY = heroY;
         laserPlayerX = heroX;
-        score = score = 75;
+        score += 75;
     }
 
     if (
@@ -313,7 +322,7 @@ let update = function() {
         alienFiveY = alienFiveY + 700;
         laserPlayerY = heroY;
         laserPlayerX = heroX;
-        score = score + 50;
+        score += 50;
     }
 
     if (
@@ -326,7 +335,7 @@ let update = function() {
         mothershipY = mothershipY + 700;
         laserPlayerY = heroY;
         laserPlayerX = heroX;
-        score = score + 500;
+        score += 500;
     }
 
     // adds collision of mothership laser with player spaceship
@@ -369,7 +378,6 @@ let update = function() {
 
     // player laser movements
     laserPlayerY += laserPlayerSpeed * (laserPlayerDirectionY * 1.5);
-    // laserAlienX = laserAlienX;
 
     if (laserPlayerY === 0) {
         laserPlayerY = heroY;
@@ -393,6 +401,54 @@ let update = function() {
 
 
 };
+
+function restartGame() {
+
+    // reset variables
+    lives = 2;
+    score = 0;
+    startTime = Date.now();
+    elapsedTime = 0;
+
+    keysDown = {};
+
+    // reset positions
+    heroX = canvas.width / 2 - 20;
+    heroY = 360;
+
+    playerLifeOneX = 20;
+    playerLifeOneY = 400;
+
+    playerLifeTwoX = 70;
+    playerLifeTwoY = 400;
+
+    alienOneX = 40;
+    alienOneY = 100;
+
+    alienTwoX = 40;
+    alienTwoY = 140;
+
+    alienThreeX = 40;
+    alienThreeY = 180;
+
+    alienFourX = 45;
+    alienFourY = 220;
+
+    alienFiveX = 43;
+    alienFiveY = 260;
+
+    mothershipX = 40;
+    mothershipY = 40;
+    mothershipDirectionX = 1;
+
+    laserAlienX = 30;
+    laserAlienY = 30;
+    laserAlienDirectionY = 1;
+
+    laserPlayerX = canvas.width / 2;
+    laserPlayerY = 360;
+    laserPlayerDirectionY = -1;
+}
 
 /**
  * This function, render, runs as often as possible.
@@ -471,8 +527,15 @@ var render = function() {
     ctx.fillText(`${SECONDS_PER_ROUND + elapsedTime}`, 20, 20);
     ctx.fillText(`SCORE: ${score}`, canvas.width / 2 - 20, 20);
     ctx.fillText(`CREDITS: ${lives}`, 340, 420)
+        // ctx.fillText(`HISCORE: ${hiScore}`, 320, 20)
+
+    document.getElementById("hiscore-number").innerHTML = `${hiScore}`;
 
 };
+
+var reset = function() {
+    location.reload();
+}
 
 /**
  * The main game loop. Most every game will have two distinct parts:
@@ -492,7 +555,14 @@ var main = function() {
 var w = window;
 requestAnimationFrame = w.requestAnimationFrame || w.webkitRequestAnimationFrame || w.msRequestAnimationFrame || w.mozRequestAnimationFrame;
 
+
 // Let's play this game!
 loadImages();
-setupKeyboardListeners();
 main();
+
+function startGame() {
+    startTime = Date.now();
+    setupKeyboardListeners();
+    main();
+    loadImages();
+}

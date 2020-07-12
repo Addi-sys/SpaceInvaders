@@ -1,0 +1,22 @@
+body {
+    font-family: 'Bungee Shade';
+    font-size: 15px;
+    /* color: antiquewhite; */
+}
+
+.background {
+    max-width: 400px;
+    max-height: 440px;
+    background-image: url("/images/blackBgImage.jpeg");
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.hiscore {
+    padding-top: 0px;
+}
